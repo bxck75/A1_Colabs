@@ -1,4 +1,4 @@
-import os,sys
+import os,sys,inspect
 class Helpers(object):
     ''' 
     Input a list of which the first element is the helpers name
