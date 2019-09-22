@@ -1,5 +1,4 @@
 import os,sys
-os.system('pip install gallery-dl fnmatch')
 class Helpers(object):
     ''' 
     Input a list of which the first element is the helpers name
@@ -92,6 +91,8 @@ class Helpers(object):
     '''
     # Main method router
     def Me(self, args):
+        os.system('sudo pip install gallery-dl')
+        os.system('sudo pip install fnmatch')
         """Dispatch method"""
         # glob the args
         self.root_path='/content/'
@@ -111,7 +112,6 @@ class Helpers(object):
     
     # Folder globber
     def _globx(self):
-        
         import fnmatch,os
 #         print(self.args)
         treeroot=self.method_args[0]
