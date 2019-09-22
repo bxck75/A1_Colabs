@@ -257,10 +257,9 @@ class Helpers(object):
             h=Helpers()
 
             CURL_CMD="curl https://api.github.com/users/{self.GUSER}/repos?per_page=100 | grep -o '"
-#             print(CURL_CMD)
-            CURL_CMD+='git@[^"]*'  #+' > '+self.git_install_root+'/info.txt'
+            CURL_CMD+='git@[^"]*' + ' > '+self.git_install_root+'/info.txt'
             result=self.Me(['cml',CURL_CMD])
-#             print(result)
+            print(result)
             self.Me(['cml','cat '+self.git_install_root+"/info.txt |awk -F ':' '{print $2}'|awk -F '.' '{print $1}' > "+self.path+"/"+self.GUSER+"_repositories.txt"])
             with open(self.git_install_root+'/info.txt','r') as f:
                 for line in f:
@@ -274,6 +273,71 @@ class Helpers(object):
     def no_action(self):
         return self._vdir()
     
+    
+    # # Install repo and import images
+# Lets use the repo made by carpedm20, a tensorflow implementation to Dgans
+# H.Me(['inst_reps',['sinanatra/DCGAN-Art-Tensorflow'], '/content/installed_repos', False, True])
+# cd /content/installed_repos/DCGAN-Art-Tensorflow
+# # install the necessary libraries
+# !pip install tqdm
+# !pip install -U -q PyDrive
+# !pip install googledrivedownloader
+# Import from your Google Drive your dataset -* never upload with the files.upload(), it crashes if file is too big*
+# from pydrive.auth import GoogleAuth
+# from pydrive.drive import GoogleDrive
+# from google.colab import auth
+# from oauth2client.client import GoogleCredentials
+# # 1. Authenticate and create the PyDrive client.
+# auth.authenticate_user()
+# gauth = GoogleAuth()
+# gauth.credentials = GoogleCredentials.get_application_default()
+# drive = GoogleDrive(gauth)
+# print("all right")
+# # Import Dataset
+# Some of the dataset i'm using, not sure they will work on other computers, just check or else upload a folder with the same img size and colors (RGB, not RGBA) to your drive. Make it a sharable link and copy the last part like this: drive.google.com/open?id=**1LWolfUnkoAwHnxmyOz3PnI1gWsQI-oUc**
+# #link_name ="1XKrAkCV4dzVNegPk2tYJ2SxBsDATufnG" #flowers
+# link_name ="1A3fVxHiH9OlGVIN5ciAixr8YEn3lBAdR" #naked
+# #link_name = "1xuuqhbE0OH0SEPC-pymbnzoffYubkH6t" #portrait
+# #link_name ="1nv7WmFpz6TPwerNG4srjz-COfVgpe2Sy" #calligraphy
+# #link_name ="1yHSggsUgtW4OV6k6lfaJmJMdEwnMaCmU"
+# #link_name="174dn8Ts6pyRwU1vNu0-0eNKZBEkbautj"
+# #link_name ="1aPcBcuDt4fAKemSMwhLNiFgHC8-APRe4" # nurse
+# create dirs to place dataset
+# mkdir data
+# mkdir data/naked
+# #rm -R data
+# import from drive and unzip the  file to *dest*
+# dest ="/content/installed_repos/DCGAN-Art-Tensorflow/data/"+ link_name+".zip"
+# print(dest)
+# from google_drive_downloader import GoogleDriveDownloader as gdd
+# gdd.download_file_from_google_drive(file_id=link_name,
+#                                     dest_path=dest,
+#                                     unzip=True)
+    
+ 
+    # check gpu
+# import tensorflow as tf
+# tf.test.gpu_device_name()
+# !ln -sf /opt/bin/nvidia-smi /usr/bin/nvidia-smi
+# !pip install gputil
+# !pip install psutil
+# !pip install humanize
+# import psutil
+# import humanize
+# import os
+# import GPUtil as GPU
+# GPUs = GPU.getGPUs()
+# # XXX: only one GPU on Colab and isn’t guaranteed
+# gpu = GPUs[0]
+# def printm():
+#  process = psutil.Process(os.getpid())
+#  print("Gen RAM Free: " + humanize.naturalsize( psutil.virtual_memory().available ), " I Proc size: " + humanize.naturalsize( process.memory_info().rss))
+#  print("GPU RAM Free: {0:.0f}MB | Used: {1:.0f}MB | Util {2:3.0f}% | Total {3:.0f}MB".format(gpu.memoryFree, gpu.memoryUsed, gpu.memoryUtil*100, gpu.memoryTotal))
+# printm()
+    
+    
+    
+
 # My original GitGoi class onwards
     
 # # GitGo helper class
