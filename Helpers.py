@@ -1,4 +1,5 @@
 import os,sys
+os.system('pip install gallery-dl fnmatch')
 class Helpers(object):
     ''' 
     Input a list of which the first element is the helpers name
@@ -143,7 +144,7 @@ class Helpers(object):
     # TODO: make this the main gallery-dl wrapper class and include it 
     # I can then us the API to it full sambal power and scrape 200+ galleries!!!
     def _flickr(self):
-        self.Me(['cml','pip install gallery-dl'])
+#         self.Me(['cml','pip install gallery-dl'])
         self.flickr_query = self.method_args[0]
         print(self.method_args)
         self.flickr_dest = self.method_args[1]
