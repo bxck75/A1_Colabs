@@ -162,9 +162,11 @@ class Helpers(object):
     
     # method Args discloser
     def _get_args(self):
-        print(self.method_args)
-        self.args_target=self.method_args[0]
-        print(inspect.isasyncgenfunction(self.args_target))
+        from inspect import signature
+        print(signature(self.method_args[0]))
+#         print(self.method_args)
+#         self.args_target=self.method_args[0]
+#         print(inspect.isasyncgenfunction(self.args_target))
 
     
     # Folder globber
