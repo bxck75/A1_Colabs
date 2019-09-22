@@ -22,10 +22,10 @@ class Helpers(object):
                     if not my_file.is_file():
                         import os
                         os.system('mkdir -p /content/lib')
-                        os.system('cd /content/lib')
+                        os.chdir('/content/lib')
                         os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py')
                         os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py')
-                        os.system('cd /content/')
+                        os.chdir('/content/')
                     from lib.Helpers import Helpers
                     from lib.myrepcol import reps
                     # print(reps)
