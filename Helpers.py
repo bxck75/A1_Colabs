@@ -29,6 +29,58 @@ class Helpers(object):
                     print(Helpers_functions)
                     print(file_list)
                     print(com_result))
+                    
+    Usage in colab :
+                    from pathlib import Path
+                    my_file=Path('/content/Helpers.py')
+                    if not my_file.is_file():
+                        %cd /content/
+                        !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py
+                        !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py
+                        from Helpers import Helpers
+                        from myrepcol import reps
+                    else:
+                        from Helpers import Helpers
+                        from myrepcol import reps
+
+                    H=Helpers()
+                    selfh = ['vdir',[Helpers]] # self help with helper class
+                    H_list = H.Me(selfh) # have all helper functions in a list
+                    print(H_list)
+                    # Output from above
+                    # ['Me', '_cml', '_flickr', '_globx', '_inst_reps', '_mkd', '_pip', '_vdir', 'args',
+                    # 'custom_reps_setup', 'get_other_reps', 'method', 'method_args', 'no_action', 'root_path']
+
+                    # list command snippets
+                    vdir_self=        ['vdir']
+                    vdir_lib=         ['vdir',[Helpers]]
+                    gal_extr=         ['cml','gallery-dl --list-extractors |grep ','flickr']
+                    gal_help=         ['cml','gallery-dl -h']
+                    fl_scrp=          ['flickr','abstract','/content/custom_images',5]
+                    flickr_scrape=    ['flickr','portrait','/content/custom_images',10]
+                    col_gdrive=       ['cml','cd "/content/drive/My Drive/Colab Notebooks"']
+                    makefolders=      ['mkd',['fold1','fold2','fold3'],'/content/custom_images']
+                    cmd_line=         ['cml','ls -l',True]
+                    pip_install_all=  ['cml',"pip install -e . |grep 'succes'",True]
+                    globber=          ['globx','/content/installed_repos','*.jpg']
+                    gitgo=            ['inst_reps',['bxck75/pytorch-CycleGAN-and-pix2pix'],'/content/installed_repos',False,True]
+
+                    # calls
+                    H.Me(gitgo)
+                    H.Me(globber)
+                    H.Me(cmd_line)
+                    H.Me(makefolders)
+                    H.Me(vdir_lib)
+                    
+                    # change only the command in the snippet list
+                    cmd_line[1],cmd_line[2]='ls -l',True
+                    H.Me(cmd_line)
+                    
+                    pip_install=['pip',['fnmatch','gallery-dl']]
+                    pip_install_setup=['pip',["-e . |grep 'succes'"]]
+                    # print(H.Me(pip_install))
+
+                    H.Me(gitgo)
     '''
     # Main method router
     def Me(self, args):
