@@ -1,4 +1,4 @@
-import os,sys,inspect
+import os,sys,inspect,fastai
 class Helpers(object):
     ''' 
     Input a list of which the first element is the helpers name
@@ -234,7 +234,6 @@ class Helpers(object):
         import os
         print()
         self.pip_install_list = self.method_args[0]
-        
         if isinstance(self.pip_install_list, list):
             spaced_list=''
             for s in self.pip_install_list:
@@ -258,7 +257,6 @@ class Helpers(object):
             
     # Pull all selected reps  
     def _inst_reps(self):
-        
         self.repo_list=self.method_args[0]      
         self.git_install_root=self.method_args[1]
         self.sub_repos=self.method_args[2]
