@@ -96,8 +96,10 @@ class Helpers(object):
         self.root_path='/content/'
 #         print(self.root_path)
         self.args = args
+        print(self.args)
         self.method= self.args[0]
         self.method_args= self.args[1:]
+        method_args = self.method_args
         method_name = '_' + str(self.method)
         # Get the method from 'self'. Default to a lambda.
         method = getattr(self, method_name, lambda: self.no_action())
