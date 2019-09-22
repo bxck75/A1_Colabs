@@ -34,54 +34,71 @@ class Helpers(object):
                     from pathlib import Path
                     my_file=Path('/content/lib/Helpers.py')
                     if not my_file.is_file():
-                        %cd /content/lib
-                        !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py
-                        !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py
-                        %cd /content/
-                        
+                        os.system('mkdir -p /content/lib')
+                        os.system('cd /content/lib')
+                        os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py')
+                        os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py')
+                        os.system('cd /content/')
+
                     from lib.Helpers import Helpers
                     from lib.myrepcol import reps
-                    
-                    H=Helpers()
-                    selfh = ['vdir',[Helpers]] # self help with helper class
-                    H_list = H.Me(selfh) # have all helper functions in a list
-                    print(H_list)
-                    # Output from above
-                    # ['Me', '_cml', '_flickr', '_globx', '_inst_reps', '_mkd', '_pip', '_vdir', 'args',
-                    # 'custom_reps_setup', 'get_other_reps', 'method', 'method_args', 'no_action', 'root_path']
+                    # print(reps)
 
                     # list command snippets
                     vdir_self=        ['vdir']
-                    vdir_lib=         ['vdir',[Helpers]]
+                    vdir_helpers=         ['vdir',[Helpers]]
                     gal_extr=         ['cml','gallery-dl --list-extractors |grep ','flickr']
                     gal_help=         ['cml','gallery-dl -h']
                     fl_scrp=          ['flickr','abstract','/content/custom_images',5]
                     flickr_scrape=    ['flickr','portrait','/content/custom_images',10]
                     col_gdrive=       ['cml','cd "/content/drive/My Drive/Colab Notebooks"']
-                    makefolders=      ['mkd',['fold1','fold2','fold3'],'/content/custom_images']
+                    makefolders=      ['mkd',['custom_images'],'/content']
                     cmd_line=         ['cml','ls -l',True]
                     pip_install_all=  ['cml',"pip install -e . |grep 'succes'",True]
                     globber=          ['globx','/content/installed_repos','*.jpg']
                     gitgo=            ['inst_reps',['bxck75/pytorch-CycleGAN-and-pix2pix'],'/content/installed_repos',False,True]
-                    gitgo_reps=       ['inst_reps',[reps[1,4,7]],'/content/installed_repos',False,True]
+                    gitgo_colab=      ['inst_reps',[reps[17],reps[18],reps[21]],'/content/installed_repos',False,True]
+                    pip_install=      ['pip',['fnmatch','gallery-dl']]
+                    pip_install_setup=['pip',["-e . |grep 'succes'"]]
 
-                    # calls
+                    # Init
+                    H=Helpers()
+
+                    # Calls
+                    # show repositories in the reps list
+                    print(str(len(reps)) + ' repos in the list')
+                    for i in range(len(reps)-1):
+                        print('[' + str(i) + '] '+reps[i])
+                    # choose reps to install
+                    gitgo[1]=[reps[17],reps[18],reps[21]]  
+                    # see command
+                    print(gitgo)
+                    # install reps
                     H.Me(gitgo)
+
                     H.Me(globber)
-                    H.Me(cmd_line)
                     H.Me(makefolders)
-                    H.Me(vdir_lib)
-                    
+
+                    # remove sample dir
+                    cmd_line[1],cmd_line[2] = 'rm -r /content/sample_data', False
+                    H.Me(cmd_line)
+
+                    H_list = H.Me(vdir_self) # have all helper functions in a list
+                    print(H_list)
+                    # Output from above
+                    # ['Me', '_cml', '_flickr', '_globx', '_inst_reps', '_mkd', '_pip', '_vdir', 'args',
+                    # 'custom_reps_setup', 'get_other_reps', 'method', 'method_args', 'no_action', 'root_path']
+
+                    # flickrscrape
+                    flir=H.Me(fl_scrp)
+                    print(flir)
+
                     # change only the command in the snippet list
                     cmd_line[1],cmd_line[2]='ls -l',True
+                    print(H.Me(cmd_line))
+                    cmd_line[1]='rm -r sample_data'
                     H.Me(cmd_line)
-                    
-                    pip_install=['pip',['fnmatch','gallery-dl']]
-                    pip_install_setup=['pip',["-e . |grep 'succes'"]]
-                    # print(H.Me(pip_install))
 
-                    H.Me(gitgo)
-                    
                     # H=Helpers()
                     # H.repo_list=reps
                     # H.git_install_root='/content/installed_repos'
