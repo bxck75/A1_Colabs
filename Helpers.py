@@ -18,19 +18,50 @@ class Helpers(object):
 
     Mininal Usage :      
                     from pathlib import Path
-                    my_file=Path('/content/lib/Helpers.py')
-                    if not my_file.is_file():
+                    lib_file=Path('/content/lib/Helpers.py')
+                    if not lib_file.is_file():
                         import os
                         os.system('mkdir -p /content/lib')
                         os.chdir('/content/lib')
                         os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py')
                         os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py')
                         os.chdir('/content/')
+
                     from lib.Helpers import Helpers
                     from lib.myrepcol import reps
-                    # print(reps)
+                    import seaborn as sns
+                    import numpy as np
+                    import pandas as pd
+
+                    import google
+                    from google.colab import drive
+                    drive.mount('/content/drive', force_remount=True)
+
                     # Init
                     H=Helpers()
+                    #  remove sample_data
+                    H.Me(['cml','rm -r /content/sample_data'])
+
+                    def get_gdrive_dataset(pack):
+                        os.chdir('/content/drive/My Drive')
+                        H.Me(['mkd',['dataset'],'/content/'])
+                        H.Me(['cml','cp -r '+pack+' /content/dataset/'])
+                        os.chdir('/content/dataset')
+                        H.Me(['cml','unzip -q '+pack])
+                        H.Me(['cml','rm -r '+pack])
+                        os.chdir('/content')
+
+                    def MethHelp(libs):
+                        os_help=H.Me(['vdir',libs])
+                        #make a list containing libs values of os_help
+                        listOfLibs = [x[0] for x in os_help]
+                        #make a list containing libs method values of os_help
+                        listOfMethods= [x[1] for x in os_help]
+                        # Create a zipped list of tuples from above lists
+                        zippedList =  list(zip(listOfLibs, listOfMethods[0:5]))
+                        zippedList
+                        # request help on method from list
+                        return zippedList
 
     Usage in colab :
                     from pathlib import Path
@@ -244,6 +275,33 @@ class Helpers(object):
             
         def __repr__(self):
             return self.path
+        
+    def _get_gpu(self):
+    #     check gpu
+        import tensorflow as tf
+        tf.test.gpu_device_name()
+        !ln -sf /opt/bin/nvidia-smi /usr/bin/nvidia-smi
+        !pip install gputil
+        !pip install psutil
+        !pip install humanize
+        import psutil
+        import humanize
+        import os
+        import GPUtil as GPU
+        GPUs = GPU.getGPUs()
+        # XXX: only one GPU on Colab and isn’t guaranteed
+        gpu = GPUs[0]
+        def printm():
+         process = psutil.Process(os.getpid())
+         print("Gen RAM Free: " + humanize.naturalsize( psutil.virtual_memory().available ), " I Proc size: " + humanize.naturalsize( process.memory_info().rss))
+         print("GPU RAM Free: {0:.0f}MB | Used: {1:.0f}MB | Util {2:3.0f}% | Total {3:.0f}MB".format(gpu.memoryFree, gpu.memoryUsed, gpu.memoryUtil*100, gpu.memoryTotal))
+        printm()
+
+
+
+
+
+
         
     #--repository required dependancies setup
     def custom_reps_setup(self):
