@@ -158,7 +158,14 @@ class Helpers(object):
         # Call the method as its returned
         return method()
 
-    # HELPER FUNCTIONS 
+    # HELPER FUNCTIONS
+    
+    # method Args discloser
+    def _get_args(meth):
+        print(self.method_args)
+        self.args_target=self.method_args[0]
+        m_args=inspect.isasyncgenfunction(self.args_target)
+        return m_args
     
     # Folder globber
     def _globx(self):
