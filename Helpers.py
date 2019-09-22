@@ -108,6 +108,21 @@ class Helpers(object):
             else:   
                 return [x for x in dir(self.method_args[0]) if not x.startswith('__')]
     
+    # Pip installer
+    def _pip(self):
+        import os
+        self.pip_install_list = self.method_args[0]
+        if isinstance(self.pip_install_list, list):
+            space_list=''
+            for s in self.pip_install_list:
+                space_list += str( s + ' ' )
+            # install the space separated list                
+            self.Me(['cml','pip install ' + space_list])
+        else: 
+            # install the single pip lib            
+            self.Me(['cml','pip install ' + self.pip_install_list])
+    
+        
     # Folder spawner
     def _mkd(self):
         import os
@@ -169,8 +184,7 @@ class Helpers(object):
 
         
     #   --grab the username if a repos is installed
-    #   --generate a txt file of all other reps of the user   
-		# !!!!!!!!!!!UNDER CONSTRUCTION!!!!!!!!!!!!
+    #   --generate a txt file of all other reps of the user    
     def get_other_reps(self):          
         for r in self.repo_list:
             self.GitUsers=[]
@@ -194,11 +208,11 @@ class Helpers(object):
         print(self.sub_repo_list)
 
     # END OF HELPER FUNCTIONS
-    
+  
     def no_action(self):
         return self._vdir()
     
-
+# My original GitGoi class onwards
     
 # # GitGo helper class
 # class GitGo(object):
