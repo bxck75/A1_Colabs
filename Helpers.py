@@ -164,8 +164,8 @@ class Helpers(object):
     def _get_args(self):
         print(self.method_args)
         self.args_target=self.method_args[0]
-        m_args=inspect.isasyncgenfunction(self.args_target)
-        return m_args
+        print(inspect.isasyncgenfunction(self.args_target))
+
     
     # Folder globber
     def _globx(self):
