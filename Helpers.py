@@ -161,7 +161,7 @@ class Helpers(object):
     # HELPER FUNCTIONS
     
     # method Args discloser
-    def _get_args(meth):
+    def _get_args(self):
         print(self.method_args)
         self.args_target=self.method_args[0]
         m_args=inspect.isasyncgenfunction(self.args_target)
