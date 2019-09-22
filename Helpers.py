@@ -35,7 +35,7 @@ class Helpers(object):
         """Dispatch method"""
         # glob the args
         self.root_path='/content/'
-        print(self.root_path)
+#         print(self.root_path)
         self.args = args
         self.method= self.args[0]
         self.method_args= self.args[1:]
@@ -49,8 +49,9 @@ class Helpers(object):
     
     # Folder globber
     def _globx(self):
-        self.Me(['cml','pip install fnmatch'])
+        
         import fnmatch,os
+#         print(self.args)
         treeroot=self.method_args[0]
         pattern=self.method_args[1]
         Sheisterhaufen = []
@@ -83,6 +84,7 @@ class Helpers(object):
     def _flickr(self):
         self.Me(['cml','pip install gallery-dl'])
         self.flickr_query = self.method_args[0]
+        print(elf.method_args)
         self.flickr_dest = self.method_args[1]
         self.flickr_qty = int(self.method_args[2])
         if isinstance(self.flickr_query, list):
@@ -167,7 +169,8 @@ class Helpers(object):
 
         
     #   --grab the username if a repos is installed
-    #   --generate a txt file of all other reps of the user    
+    #   --generate a txt file of all other reps of the user   
+		# !!!!!!!!!!!UNDER CONSTRUCTION!!!!!!!!!!!!
     def get_other_reps(self):          
         for r in self.repo_list:
             self.GitUsers=[]
