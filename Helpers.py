@@ -276,14 +276,15 @@ class Helpers(object):
         def __repr__(self):
             return self.path
         
+    # get GPU Capabilities    
     def _get_gpu(self):
     #     check gpu
         import tensorflow as tf
         tf.test.gpu_device_name()
-        !ln -sf /opt/bin/nvidia-smi /usr/bin/nvidia-smi
-        !pip install gputil
-        !pip install psutil
-        !pip install humanize
+        self.Me(['cml','ln -sf /opt/bin/nvidia-smi /usr/bin/nvidia-smi'])
+        self.Me(['cml','pip install gputil'])
+        self.Me(['cml','pip install psutil'])
+        self.Me(['cml','pip install humanize'])
         import psutil
         import humanize
         import os
