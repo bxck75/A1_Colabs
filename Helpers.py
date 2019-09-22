@@ -32,17 +32,16 @@ class Helpers(object):
                     
     Usage in colab :
                     from pathlib import Path
-                    my_file=Path('/content/Helpers.py')
+                    my_file=Path('/content/lib/Helpers.py')
                     if not my_file.is_file():
-                        %cd /content/
+                        %cd /content/lib
                         !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py
                         !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py
-                        from Helpers import Helpers
-                        from myrepcol import reps
-                    else:
-                        from Helpers import Helpers
-                        from myrepcol import reps
-
+                        %cd /content/
+                        
+                    from Helpers import Helpers
+                    from myrepcol import reps
+                    
                     H=Helpers()
                     selfh = ['vdir',[Helpers]] # self help with helper class
                     H_list = H.Me(selfh) # have all helper functions in a list
@@ -64,6 +63,7 @@ class Helpers(object):
                     pip_install_all=  ['cml',"pip install -e . |grep 'succes'",True]
                     globber=          ['globx','/content/installed_repos','*.jpg']
                     gitgo=            ['inst_reps',['bxck75/pytorch-CycleGAN-and-pix2pix'],'/content/installed_repos',False,True]
+                    gitgo_reps=       ['inst_reps',[reps[1,4,7]],'/content/installed_repos',False,True]
 
                     # calls
                     H.Me(gitgo)
