@@ -16,20 +16,22 @@ class Helpers(object):
     'method_args', # methods argument list
     'no_action'    # if a empty command list is fed to the class
 
-    Examples :      # Init
+    Mininal Usage :      
+                    from pathlib import Path
+                    my_file=Path('/content/lib/Helpers.py')
+                    if not my_file.is_file():
+                        import os
+                        os.system('mkdir -p /content/lib')
+                        os.system('cd /content/lib')
+                        os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/Helpers.py')
+                        os.system('wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py')
+                        os.system('cd /content/')
+                    from lib.Helpers import Helpers
+                    from lib.myrepcol import reps
+                    # print(reps)
+                    # Init
                     H=Helpers()
-                    # Call
-                    H.Me(['mkd',['fold1','fold2','fold3'],'/content/custom_images'])
-                    H.Me(['flickr','portrait','/content/custom_images',10])
-                    # Catch results
-                    Helpers_functions = H.Me(['vdir',[Helpers]])
-                    file_list         = H.Me(['globx','/content/custom_images','*.jpg'])
-                    com_result        = H.Me(['cml','wget http://www.google.com',False])
-                    # Show results
-                    print(Helpers_functions)
-                    print(file_list)
-                    print(com_result))
-                    
+
     Usage in colab :
                     from pathlib import Path
                     my_file=Path('/content/lib/Helpers.py')
