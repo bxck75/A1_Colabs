@@ -81,6 +81,13 @@ class Helpers(object):
                     # print(H.Me(pip_install))
 
                     H.Me(gitgo)
+                    
+                    # H=Helpers()
+                    # H.repo_list=reps
+                    # H.git_install_root='/content/installed_repos'
+                    # H.GUSER = 'bxck75'
+                    # H.path = H.git_install_root+'/'+H.GUSER
+                    # H.get_other_reps()
     '''
     # Main method router
     def Me(self, args):
