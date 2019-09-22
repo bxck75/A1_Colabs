@@ -84,7 +84,7 @@ class Helpers(object):
     def _flickr(self):
         self.Me(['cml','pip install gallery-dl'])
         self.flickr_query = self.method_args[0]
-        print(elf.method_args)
+        print(self.method_args)
         self.flickr_dest = self.method_args[1]
         self.flickr_qty = int(self.method_args[2])
         if isinstance(self.flickr_query, list):
