@@ -97,7 +97,7 @@ class Helpers(object):
         self.root_path='/content/'
 #         print(self.root_path)
         self.args = args
-        print(self.args)
+        print('[Running-->]'+str(self.args))
         self.method= self.args[0]
         self.method_args= self.args[1:]
         method_args = self.method_args
