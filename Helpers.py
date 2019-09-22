@@ -111,18 +111,21 @@ class Helpers(object):
     # Pip installer
     def _pip(self):
         import os
+        print()
         self.pip_install_list = self.method_args[0]
-        if isinstance(self.pip_install_list, list):
-            space_list=''
-            for s in self.pip_install_list:
-                space_list += str( s + ' ' )
-            # install the space separated list                
-            self.Me(['cml','pip install ' + space_list])
-        else: 
-            # install the single pip lib            
-            self.Me(['cml','pip install ' + self.pip_install_list])
-    
         
+        if isinstance(self.pip_install_list, list):
+            spaced_list=''
+            for s in self.pip_install_list:
+                spaced_list += str( s + ' ' )
+            # install the space separated list
+            print('Installing ' + spaced_list)
+            self.Me(['cml','pip install ' + spaced_list])
+        else: 
+            # install the single pip lib
+            print('Installing ' + self.pip_install_list)
+            self.Me(['cml','pip install ' + self.pip_install_list])
+            
     # Folder spawner
     def _mkd(self):
         import os
