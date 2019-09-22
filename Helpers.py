@@ -39,8 +39,8 @@ class Helpers(object):
                         !wget https://raw.githubusercontent.com/bxck75/A1_Colabs/master/myrepcol.py
                         %cd /content/
                         
-                    from Helpers import Helpers
-                    from myrepcol import reps
+                    from lib.Helpers import Helpers
+                    from lib.myrepcol import reps
                     
                     H=Helpers()
                     selfh = ['vdir',[Helpers]] # self help with helper class
