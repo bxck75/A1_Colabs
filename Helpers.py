@@ -138,6 +138,16 @@ class Helpers(object):
                     # H.GUSER = 'bxck75'
                     # H.path = H.git_install_root+'/'+H.GUSER
                     # H.get_other_reps()
+                    
+                    
+                    import os,sys,pandas as pd
+                    #@title Helper voor functies
+                    # helper voor gspread functionaliteit
+                    need_help_on_module=pd
+                    # toon de methods voor de module
+                    help=pd.DataFrame.from_records([[a for a in dir(need_help_on_module) if '__' not in a]])
+
+                    display(help)
     '''
     # Main method router
     def Me(self, args):
