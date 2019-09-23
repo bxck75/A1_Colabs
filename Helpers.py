@@ -168,7 +168,16 @@ class Helpers(object):
 #         self.args_target=self.method_args[0]
 #         print(inspect.isasyncgenfunction(self.args_target))
 
-    
+    # print methods of an object
+    def _methods_of(self,lr=False):
+        for attr in dir(self.method_args[0]):
+            if attr.startswith("_"): continue
+            try:
+                if callable(getattr(self.method_args[0],str(attr),None)):
+                    print(f"{attr}{str(inspect.signature(getattr(self.method_args[0],str(attr), None)))}:")
+                    if lr==True: print()
+            except: pass
+
     # Folder globber
     def _globx(self):
         import fnmatch,os
